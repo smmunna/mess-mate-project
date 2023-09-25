@@ -24,24 +24,24 @@ class RequestController extends Controller
     }
 
     // Getting Individual User and their status;
-    public function getReqUserById($email){
-        $reqManager = Sendrequest::Where('email',$email)->first();
-        if($reqManager){
+    public function getReqUserById($email)
+    {
+        $reqManager = Sendrequest::Where('email', $email)->first();
+        if ($reqManager) {
             return $reqManager;
-        }
-        else{
-            return ['status'=>'pending'];
+        } else {
+            return ['status' => 'pending'];
         }
     }
 
     // Getting request status;
-    public function getReqStatus($email){
-        $reqManager = Sendrequest::Where('email',$email)->first();
-        if($reqManager){
+    public function getReqStatus($email)
+    {
+        $reqManager = Sendrequest::Where('email', $email)->first();
+        if ($reqManager) {
             return $reqManager;
-        }
-        else{
-            return ['status'=>'null'];
+        } else {
+            return ['status' => 'null'];
         }
     }
 

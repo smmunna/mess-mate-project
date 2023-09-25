@@ -46,7 +46,7 @@ Route::post('/save-dailybazar', [DailybazarController::class, 'saveDailyBazar'])
 Route::put('/update-dailybazar', [DailybazarController::class, 'updateDailyBazar']);
 
 // Delete all data;
-Route::post('/delete-data',[DeleteController::class,'deleteAlldata']);
+Route::post('/delete-data', [DeleteController::class, 'deleteAlldata']);
 
 
 Route::get('/user/{email}', [UserController::class, 'getUserByEmail']);
@@ -60,10 +60,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/show-balance/{email?}', [BalanceController::class, 'showBalance']);
     Route::get('/view-meal-status', [DailymealController::class, 'getMealStatus']);
     Route::get('/show-daily-bazar', [DailybazarController::class, 'showDailyBazar']);
-    
-    Route::get('/collected-amount',[CurrentStatusController::class,'getBalances']);
-    Route::get('/cost-bazar',[CurrentStatusController::class,'getBazarCost']);
-    Route::get('/cost-meal',[CurrentStatusController::class,'getTotalMeal']);
-    Route::get('/total-meal-for-member',[CurrentStatusController::class,'getTotalMealForMember']);
+
+    Route::get('/collected-amount', [CurrentStatusController::class, 'getBalances']);
+    Route::get('/cost-bazar', [CurrentStatusController::class, 'getBazarCost']);
+    Route::get('/cost-meal', [CurrentStatusController::class, 'getTotalMeal']);
+    Route::get('/total-meal-for-member', [CurrentStatusController::class, 'getTotalMealForMember']);
 
 });
