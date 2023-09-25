@@ -1,0 +1,13 @@
+1. Admin will change role of a user -> pending or accept from request table;
+2. Add Member to Member table
+3. Update Member
+4. Delete Member
+
+
+INSERT INTO `members`( `name`, `email`, `phone`, `mess_name`, `manager_email`) 
+VALUES 
+('Munna','munna@gmail.com','01935991255','whitehouse','info@techzaint.com'),
+('Abid','abid@gmail.com','01935991256','whitehouse','info@techzaint.com'),
+('Rahim','rahim@gmail.com','01935991257','whitehouse','info@techzaint.com'),
+('Taher','taher@gmail.com','01935991258','whitehouse','info@techzaint.com'),
+('Bashar','bashar@gmail.com','01935991259','whitehouse','info@techzaint.com')
