@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PageTitle from '../../components/PageTitle/PageTitle';
 
 const Notice = () => {
     return (
         <div className="antialiased max-w-6xl mx-auto py-12  px-2">
+        <PageTitle title={`Notice | Mess Mate`}/>
             <div className="relative block md:flex items-center">
                 <div className="w-full md:w-1/2 relative z-1 bg-gray-100 rounded shadow-lg overflow-hidden">
                     <div className="text-lg font-medium text-green-500 uppercase p-8 text-center border-b border-gray-200 tracking-wide">

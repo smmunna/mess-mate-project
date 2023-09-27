@@ -5,103 +5,108 @@
 
 /* Navlink */
 .navlink li {
-    cursor: pointer;
-    padding: 12px;
-    transition: all 0.3s ease-in;
+  cursor: pointer;
+  padding: 12px;
+  transition: all 0.3s ease-in;
 }
 
 .navlink li:hover {
 
-    background-color: black;
-    transition: all 0.3s ease-in;
+  background-color: black;
+  transition: all 0.3s ease-in;
 }
 
 
 /* Links are styling for dashboard */
 .link-style {
-    background-color: rgb(255, 0, 0) !important;
-    color: white;
+  background-color: rgb(255, 0, 0) !important;
+  color: white;
 
 }
 
 .link-style-brown {
-    background-color: burlywood !important;
-    color: black;
+  background-color: burlywood !important;
+  color: black;
 
 }
 
 
 
 .link-style:hover {
-    background-color: transparent;
-    color: white;
+  background-color: transparent;
+  color: white;
 }
 
 .link-style:focus {
-    background-color: red !important;
-    color: white !important;
+  background-color: red !important;
+  color: white !important;
 }
 
 .dashboard {
-    background-image: url('../src/assets/cover/cover5.png');
+  background-image: url('../src/assets/cover/cover5.png');
 }
 
-.link-style1{
-    color: white;
+.link-style1 {
+  color: white;
 }
-.link-style1:hover{
-    color: white;
-    background-color: transparent;
+
+.link-style1:hover {
+  color: white;
+  background-color: transparent;
 }
+
 .link-style1:focus {
-    background-color: transparent !important;
-    color: white !important;
+  background-color: transparent !important;
+  color: white !important;
 }
 
 
 /* Printing status */
 /* Hide the element by default */
 .print-only {
+  display: none;
+}
+
+.hide-btn {
+  display: block;
+}
+
+/* Show the element only when the page is printed */
+@media print {
+  .print-only {
+    display: block;
+  }
+
+  .hide-btn {
     display: none;
   }
 
-  .hide-btn{
-    display: block;
+  .card-print {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-  
-  /* Show the element only when the page is printed */
-  @media print {
-    .print-only {
-      display: block;
-    }
-    .hide-btn{
-        display: none;
-    }
-    .card-print{
-        display: grid;
-        grid-template-columns: repeat(2,1fr)!important;
-    }
-  }
-  /* End of printing activity */
-  
+}
 
-  /* Dashboard */
-  .sidebar-menu{
-    background: url('../src/assets/sidebar/sidebar.jpg');
-  }
+/* End of printing activity */
 
 
-  /* Video responsive */
-  .video {
-    position: relative;
-    overflow: hidden;
-    padding-top: 56.25%;
-  }
+/* Dashboard */
+.sidebar-menu {
+  background: url('../src/assets/sidebar/sidebar.jpg');
+}
 
-  .video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+
+/* Video responsive */
+.video {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

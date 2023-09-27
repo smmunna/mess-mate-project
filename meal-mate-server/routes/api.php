@@ -54,10 +54,13 @@ Route::get('/user/{email}', [UserController::class, 'getUserByEmail']);
 //Admin activity;
 Route::put('/req-status-update',[RequestController::class,'reqStatus']);
 
+// For getting user info;
+Route::get('/user-req-details/{email?}', [RequestController::class, 'getReqUserById']);
+
+
 //All secure URL's
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // User information secured;
-    Route::get('/user-req-details/{email?}', [RequestController::class, 'getReqUserById']);
     Route::get('/user-req-status/{email?}', [RequestController::class, 'getReqStatus']);
     Route::get('/member/{email?}', [MemberController::class, 'getMember']);
     Route::get('/member-id/{id?}', [MemberController::class, 'getMemberDetails']);

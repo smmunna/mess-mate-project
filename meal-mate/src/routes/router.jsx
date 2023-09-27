@@ -20,6 +20,7 @@ import MealStatus from "../Pages/Dashboard/MealStatus/MealStatus";
 import FormatStorage from "../Pages/Dashboard/FormatStorage/FormatStorage";
 import ManagerRequestList from "../Pages/Dashboard/Admin/ManagerRequest/ManagerRequest";
 import Notice from "../Pages/Notice/Notice";
+import Contact from "../Pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/notice",
         element: <Notice />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
       },
       {
         path: '/dashboard',
@@ -52,7 +57,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'req-manager-list',
-            element: <PrivateRoutes><AdminPrivateRoutes><ManagerRequestList/></AdminPrivateRoutes></PrivateRoutes>
+            element: <PrivateRoutes><AdminPrivateRoutes><ManagerRequestList /></AdminPrivateRoutes></PrivateRoutes>
           },
           {
             path: 'add-members',

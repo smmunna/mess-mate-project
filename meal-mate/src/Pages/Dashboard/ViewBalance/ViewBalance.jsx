@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Spinner from '../../../components/Spinner/Spinner';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import PageTitle from "../../../components/PageTitle/PageTitle";
+
 
 const ViewBalance = () => {
     const [getUser, setGetUser] = useState([]);
@@ -12,7 +14,7 @@ const ViewBalance = () => {
     const { user } = useContext(AuthContext)
 
     const joinUser = () => {
-        axios.get(`http://localhost:8000/api/show-balance/${user.email}`, {  //TODO: change with liver server;
+        axios.get(`http://localhost:8000/api/show-balance/${user?.email}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -62,6 +64,7 @@ const ViewBalance = () => {
 
     return (
         <div>
+        <PageTitle title={`Balance List | Mess Mate`}/>
             <h3 className='text-center text-2xl font-semibold pb-3'>Balance Information For All Members</h3>
             <hr />
 

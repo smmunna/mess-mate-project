@@ -11,7 +11,7 @@ const AdminPrivateRoutes = ({children}) => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${user.email}`, {
+        axios.get(`http://localhost:8000/api/user/${user?.email}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }

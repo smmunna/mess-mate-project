@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
+import PageTitle from "../../../components/PageTitle/PageTitle";
 
 const AddMember = () => {
     const { user } = useContext(AuthContext);
@@ -70,6 +71,7 @@ const AddMember = () => {
 
     return (
         <div>
+        <PageTitle title={`Add Member | Mess Mate`}/>
             <div className='flex justify-center'>
                 <div>
                     <div>

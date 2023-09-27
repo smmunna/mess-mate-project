@@ -1,5 +1,6 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import userIcon from "../../assets/icon/user.png";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
@@ -26,6 +27,7 @@ const Header = () => {
     const navlink = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/notice">Notice</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
         {
             user ? <>
                 <li><Link to="/dashboard">Dashboard</Link></li>
@@ -65,9 +67,9 @@ const Header = () => {
                                 <div className="flex justify-center items-center gap-3 mr-5 md:mr-4 lg:mr-0">
                                     <div className="w-12 rounded-full">
                                         {user.photoURL ? (
-                                            <img src={user.photoURL} alt="User Photo" />
+                                            <img src={user.photoURL} alt="" />
                                         ) : (
-                                            <div className="px-6">Loading...</div>
+                                            <img src={userIcon} alt="" />
                                         )}
                                     </div>
                                     <div className="hidden md:block" onClick={handleLogout}>

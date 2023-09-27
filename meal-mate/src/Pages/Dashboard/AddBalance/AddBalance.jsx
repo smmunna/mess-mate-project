@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import PageTitle from "../../../components/PageTitle/PageTitle";
 
 const AddBalance = () => {
     const [getmember, setGetmember] = useState([])
     const { user } = useContext(AuthContext)
     const [changeMember, setChangeMember] = useState('');
-    const [changeMemberName, setChangeMemberName] = useState('');
 
     const getUser = () => {
         axios.get(`http://localhost:8000/api/member/${user.email}`, {  //TODO: change with liver server;
@@ -28,6 +28,7 @@ const AddBalance = () => {
         getUser()
     }, [])
 
+    // Add amount to this form;
     const handleAddAmount = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -64,6 +65,7 @@ const AddBalance = () => {
 
     return (
         <div>
+        <PageTitle title={`Add Balance | Mess Mate`}/>
             <h3 className='text-2xl text-center mb-2 font-semibold'>Add Balance</h3>
             <hr />
             <div className='grid justify-center pt-5'>

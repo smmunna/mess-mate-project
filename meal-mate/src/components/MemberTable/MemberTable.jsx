@@ -140,7 +140,7 @@ const MemberTable = () => {
 
 
     return (
-        <div>
+        <div className='flex  justify-center'>
             {
                 !isLoaded ?
                     <>
@@ -154,6 +154,8 @@ const MemberTable = () => {
                             getmember.length > 0 ?
                                 <>
                                     <div className="overflow-x-auto">
+                                    <h3 className='text-center font-semibold py-2 text-2xl'>Member List</h3>
+                                    <hr />
                                         <table className="table">
                                             {/* head */}
                                             <thead>

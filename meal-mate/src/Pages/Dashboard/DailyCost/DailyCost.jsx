@@ -4,6 +4,7 @@ import Spinner from '../../../components/Spinner/Spinner';
 import axios from 'axios';
 import showIcon from "../../../assets/icon/date.png"
 import Swal from 'sweetalert2';
+import PageTitle from "../../../components/PageTitle/PageTitle";
 
 const DailyCost = () => {
     const [getmember, setGetmember] = useState([])
@@ -12,7 +13,7 @@ const DailyCost = () => {
     const [isLoaded, setLoaded] = useState(false)
     const { user } = useContext(AuthContext)
     const getUser = () => {
-        axios.get(`http://localhost:8000/api/member/${user.email}`, {  //TODO: change with liver server;
+        axios.get(`http://localhost:8000/api/member/${user?.email}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -46,14 +47,21 @@ const DailyCost = () => {
         }));
 
         const mealInfo = {
-            data: memberMealNumbers
+            data: memberMealNumbers,
+            date:startdate
         }
 
-        console.log(mealInfo)
+        // console.log(mealInfo)
 
         // send to the server;
         axios.post(`http://localhost:8000/api/save-dailymeal`, mealInfo) //TODO: change with live site
             .then(res => {
+                // console.log(res.data)
+
+                 if (res.data.status == 'exist') {
+                    alert(`On this date: ${startdate}, data hasbeen already exist`)
+                }
+
                 if (res.data.status == 'ok') {
                     Swal.fire({
                         position: 'top-end',
@@ -76,6 +84,7 @@ const DailyCost = () => {
 
     return (
         <div>
+        <PageTitle title={`Add Daily Meal | Mess Mate`}/>
             <h3 className="text-center text-2xl my-3">Your Daily Meal</h3>
             <hr />
 
@@ -136,7 +145,7 @@ const DailyCost = () => {
                                                                                         updatedMealNumbers[index] = parseFloat(e.target.value);
                                                                                         setMealNumbers(updatedMealNumbers);
                                                                                     }}>
-                                                                                    <option key={index + 1} selected>Choose one</option>
+                                                                                    <option key={index + 1} value={0}>Choose one</option>
                                                                                     <option  value={0}>0</option>
                                                                                     <option value={1}>1</option>
                                                                                     <option value={2}>2</option>

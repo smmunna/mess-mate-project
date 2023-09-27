@@ -3,6 +3,8 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import moment from "moment/moment";
+import PageTitle from "../../../components/PageTitle/PageTitle";
+
 
 const ManagerRequest = () => {
     const [reqUser, setReqUser] = useState([]);
@@ -11,7 +13,7 @@ const ManagerRequest = () => {
 
     // user request details;
     const userReq = () => {
-        axios.get(`http://localhost:8000/api/user-req-status/${user.email}`, {
+        axios.get(`http://localhost:8000/api/user-req-status/${user?.email}`, { //TODO:Change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -41,7 +43,7 @@ const ManagerRequest = () => {
         }
 
         // Send request to the server;
-        axios.post(`http://localhost:8000/api/request-manager`, reqInfo)
+        axios.post(`http://localhost:8000/api/request-manager`, reqInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'exist') {
                     toast.error('Sorry! your have already sent the request !', {
@@ -65,6 +67,7 @@ const ManagerRequest = () => {
 
     return (
         <div>
+        <PageTitle title={`Request Manager | Mess Mate`}/>
             <div className="flex justify-center">
                 <div>
                     <div>

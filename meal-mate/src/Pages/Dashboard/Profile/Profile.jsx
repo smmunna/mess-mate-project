@@ -3,13 +3,14 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
 import PageTitle from '../../../components/PageTitle/PageTitle';
+import userIcon from "../../../assets/icon/user.png";
 
 const Profile = () => {
     const { user } = useContext(AuthContext)
     const [getUser, setUser] = useState([]);
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${user.email}`, {
+        axios.get(`http://localhost:8000/api/user/${user?.email}`, { //TODO: change with live site;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -37,11 +38,23 @@ const Profile = () => {
             <div className="mt-8 lg:mt-2 md:grid grid-cols-4 grid-rows-2 bg-white gap-2 p-4 rounded-xl">
                 <div className="md:col-span-1 h-48 shadow-xl">
                     <div className="flex w-full h-full relative">
-                        <img
-                            src={user?.photoURL}
-                            className="w-44 h-44 m-auto"
-                            alt=""
-                        />
+                        {
+                            user ? <>
+                                <img
+                                    src={user?.photoURL}
+                                    className="w-20 h-20 m-auto"
+                                    alt=""
+                                />
+                            </>
+                                :
+                                <>
+                                    <img
+                                        src={userIcon}
+                                        className="w-20 h-20 m-auto"
+                                        alt=""
+                                    />
+                                </>
+                        }
                     </div>
                 </div>
                 <div className="md:col-span-3 h-48 shadow-xl p-4 space-y-2 p-3">

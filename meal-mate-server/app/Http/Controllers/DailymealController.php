@@ -11,11 +11,20 @@ class DailymealController extends Controller
     public function saveDailyMealData(Request $req)
     {
         $mealData = $req->input('data');
-        foreach ($mealData as $meal) {
-            Dailymeal::create($meal);
+        $date = $req->input('date');
+
+        $exist = Dailymeal::where('date', $date)->first();
+        if ($exist) {
+            return ['status' => 'exist'];
+        } else {
+            foreach ($mealData as $meal) {
+                Dailymeal::create($meal);
+            }
+            return ['status' => 'ok'];
         }
 
-        return ['status' => 'ok'];
+
+
     }
 
     // daily meals status specific data with date ;

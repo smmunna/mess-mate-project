@@ -15,14 +15,21 @@ class DailybazarController extends Controller
         $date = $req->input('date');
         $manager_email = $req->input('manager_email');
 
-        $dailybazar = new Dailybazar();
-        $dailybazar->name = $name;
-        $dailybazar->cost = $cost;
-        $dailybazar->date = $date;
-        $dailybazar->manager_email = $manager_email;
-        $dailybazar->save();
+        $exist = Dailybazar::where('date', $date)->first();
+        if ($exist) {
+            return ['status' => 'exist'];
+        } else {
+            $dailybazar = new Dailybazar();
+            $dailybazar->name = $name;
+            $dailybazar->cost = $cost;
+            $dailybazar->date = $date;
+            $dailybazar->manager_email = $manager_email;
+            $dailybazar->save();
 
-        return ['status' => 'ok'];
+            return ['status' => 'ok'];
+        }
+
+
     }
 
     // Showing the daily Bazar Details;
@@ -45,5 +52,5 @@ class DailybazarController extends Controller
         return ['status' => 'ok'];
     }
 
-    
+
 }

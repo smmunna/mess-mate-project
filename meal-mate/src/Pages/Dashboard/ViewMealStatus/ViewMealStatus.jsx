@@ -6,6 +6,8 @@ import axios from "axios";
 import Spinner from "../../../components/Spinner/Spinner";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import PageTitle from "../../../components/PageTitle/PageTitle";
+
 
 const ViewMealStatus = () => {
     const [startdate, setStartDate] = useState('');
@@ -17,7 +19,7 @@ const ViewMealStatus = () => {
     const handleShowFormdata = (e) => {
         e.preventDefault();
         const date = startdate;
-        const email = user.email;
+        const email = user?.email;
 
         // Construct the URL with query parameters
         const url = `http://localhost:8000/api/view-meal-status?email=${email}&date=${date}`; //TODO: change with live server;
@@ -81,6 +83,7 @@ const ViewMealStatus = () => {
 
     return (
         <div>
+        <PageTitle title={`Date wise meal | Mess Mate`}/>
             <h3 className="text-center text-2xl my-3">View Meal Status</h3>
             <hr />
             <div>

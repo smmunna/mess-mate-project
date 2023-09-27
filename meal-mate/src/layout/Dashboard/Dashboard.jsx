@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, ScrollRestoration } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
-import openIcon from "../../assets/icon/open.png";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -10,7 +9,7 @@ const Dashboard = () => {
     const [reqUser, setReqUser] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${user.email}`, {
+        axios.get(`http://localhost:8000/api/user/${user?.email}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -26,11 +25,11 @@ const Dashboard = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user-req-details/${user.email}`, {
+        axios.get(`http://localhost:8000/api/user-req-details/${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
-        }) //TODO: change with live site;
+        })
             .then(res => {
                 setReqUser(res.data)
                 // console.log(res.data)
@@ -101,7 +100,7 @@ const Dashboard = () => {
                                     }
 
 
-                                    <li className="my-3 py-2 bg-slate-700"><Link className="link-style1">Contact with Admin</Link></li>
+                                    <li className="my-3 py-2 bg-slate-700"><Link to={`/contact`} className="link-style1">Contact with Admin</Link></li>
                                 </div>
                             </>
                         }
@@ -114,7 +113,7 @@ const Dashboard = () => {
                                     <hr className="border-4 border-b-amber-600" />
                                     <li className="my-3 py-2 bg-slate-800"><Link className="link-style-brown" to={`/dashboard/profile`}>Profile</Link></li>
                                     <li className="my-3 py-2 bg-slate-700"><Link className="link-style" to={`/dashboard/req-manager-list`}>Request for Manager List</Link></li>
-                                    <li className="my-3 py-2 bg-slate-800"><Link className="link-style-brown">Messages</Link></li>
+                                    {/* <li className="my-3 py-2 bg-slate-800"><Link className="link-style-brown">Messages</Link></li> */}
                                 </div>
                             </>
                         }

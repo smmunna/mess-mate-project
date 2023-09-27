@@ -6,6 +6,7 @@ import Spinner from '../../../components/Spinner/Spinner';
 import takaIcon from '../../../assets/icon/taka.png';
 import { useReactToPrint } from 'react-to-print';
 import moment from 'moment/moment';
+import PageTitle from "../../../components/PageTitle/PageTitle"
 
 const MealStatus = () => {
     const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const MealStatus = () => {
 
     // Get collected Balance;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/collected-amount?manager_email=${user.email}`, { //TODO: change with live server
+        axios.get(`http://localhost:8000/api/collected-amount?manager_email=${user?.email}`, { //TODO: change with live server
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -51,7 +52,7 @@ const MealStatus = () => {
 
     // Get total bazar cost;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/cost-bazar?manager_email=${user.email}`, { //TODO: change with live server;
+        axios.get(`http://localhost:8000/api/cost-bazar?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -76,7 +77,7 @@ const MealStatus = () => {
 
     // Get total mealCounted Number cost;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/total-meal-for-member?manager_email=${user.email}`, { //TODO: change with live server;
+        axios.get(`http://localhost:8000/api/total-meal-for-member?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -97,7 +98,7 @@ const MealStatus = () => {
 
     // Get total meal;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/cost-meal?manager_email=${user.email}`, { //TODO: change with live server;
+        axios.get(`http://localhost:8000/api/cost-meal?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -133,11 +134,12 @@ const MealStatus = () => {
 
     return (
         <div ref={componentRef}>
+        <PageTitle title={`Final Summary | Mess Mate`}/>
             <h3 className="text-center text-2xl my-3">Current Summary of this Month</h3>
             <hr />
             <div className='flex justify-center'>
                 <div className='card-print py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-5'>
-                {loading && <Spinner />}
+                    {loading && <Spinner />}
                     <>
                         <MealStatusCard title={`Collected Amount`} amount={collectedamount} img={takaIcon} />
                         <MealStatusCard title={`Total Cost`} amount={totalcostamount} img={takaIcon} />
@@ -197,10 +199,10 @@ const MealStatus = () => {
                                             }
 
                                             {/* Total meal number showing */}
-                                            {/* <tr className='text-center'>
+                                            <tr className='text-center'>
                                                 <td className='text-lg font-bold'>Total Meal</td>
                                                 <td className='text-xl font-bold'>{totalmealamount}</td>
-                                            </tr> */}
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

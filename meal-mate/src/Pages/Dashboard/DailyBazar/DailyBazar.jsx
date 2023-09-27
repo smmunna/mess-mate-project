@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Spinner from '../../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
+import PageTitle from "../../../components/PageTitle/PageTitle"
 
 const DailyBazar = () => {
     const [startdate, setStartDate] = useState('');
@@ -14,41 +15,9 @@ const DailyBazar = () => {
     const { user } = useContext(AuthContext)
 
 
-    const handleSaveData = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const cost = form.amount.value;
-
-        const bazarInfo = {
-            name,
-            cost,
-            date: startdate,
-            manager_email: user.email
-        }
-        // console.log(bazarInfo)
-        axios.post(`http://localhost:8000/api/save-dailybazar`, bazarInfo)  //TODO: change with live server;
-            .then(res => {
-                if (res.data.status == 'ok') {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Daily Bazar cost added successfully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    form.reset()
-                    setUserBazar('')
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    //Show the daily Bazar cost here;
-    const getBazarCost = () => {
-        axios.get(`http://localhost:8000/api/show-daily-bazar?manager_email=${user.email}`, { //TODO: change with live server;
+     //Show the daily Bazar cost here;
+     const getBazarCost = () => {
+        axios.get(`http://localhost:8000/api/show-daily-bazar?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -67,12 +36,55 @@ const DailyBazar = () => {
         getBazarCost()
     }, [])
 
+
+
+    // handle save bazar cost;
+    const handleSaveData = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const cost = form.amount.value;
+
+        const bazarInfo = {
+            name,
+            cost,
+            date: startdate,
+            manager_email: user.email
+        }
+        // console.log(bazarInfo)
+        axios.post(`http://localhost:8000/api/save-dailybazar`, bazarInfo)  //TODO: change with live server;
+            .then(res => {
+                if(res.data.status == 'exist'){
+                    alert(`On this date: ${startdate}, data already exist..!`)
+                    return
+                }
+                if (res.data.status == 'ok') {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Daily Bazar cost added successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    form.reset()
+                    getBazarCost()
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+   
+
     // Update the bazar cost;
     const handleUpdateBazarAmount = (e) => {
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
         const amount = form.amount.value;
         const amountInfo = {
+            name,
             amount
         }
 
@@ -100,6 +112,7 @@ const DailyBazar = () => {
 
     return (
         <div>
+        <PageTitle title={`Daily Bazar | Mess Mate`}/>
             <div className='my-4'>
                 <h3 className="text-center text-2xl my-3">Your Daily Bazar Cost</h3>
                 <hr />
@@ -124,6 +137,9 @@ const DailyBazar = () => {
                     <div className='flex justify-center py-3'>
                         <div>
                             <div className='mb-2'>
+                                <div className="form-control mb-2">
+                                    <input type="text" name='name' placeholder="Enter the Name" className="input input-bordered lg:w-[400px] " required />
+                                </div>
                                 <div className="form-control">
                                     <input type="text" name='amount' placeholder="Enter the amount" className="input input-bordered lg:w-[400px] " required />
                                 </div>
@@ -167,7 +183,7 @@ const DailyBazar = () => {
                                                             <table className="table">
                                                                 {/* head */}
                                                                 <thead>
-                                                                    <tr className="text-center">
+                                                                    <tr className="">
                                                                         <th>Name</th>
                                                                         <th>Cost</th>
                                                                         <th>Date</th>
@@ -178,7 +194,7 @@ const DailyBazar = () => {
                                                                     {/* row 1 */}
                                                                     {
                                                                         bazardata.map((member, index) => <React.Fragment key={index}>
-                                                                            <tr className="text-center">
+                                                                            <tr className="">
                                                                                 <td>{member.name}</td>
                                                                                 <td>{member.cost}</td>
                                                                                 <td>{member.date}</td>
