@@ -40,7 +40,7 @@ const DailyCost = () => {
             member_id: member.id,
             manager_email: member.manager_email,
             name: member.name,
-            mealNumber: mealNumbers[index] || 0,
+            mealNumber: parseFloat(mealNumbers[index] || 0),
             date: startdate
             // Default to 0 if no meal number selected
         }));
@@ -49,10 +49,10 @@ const DailyCost = () => {
             data: memberMealNumbers
         }
 
-        // console.log(mealInfo)
+        console.log(mealInfo)
 
         // send to the server;
-        axios.post(`http://localhost:8000/api/save-dailymeal`, mealInfo)
+        axios.post(`http://localhost:8000/api/save-dailymeal`, mealInfo) //TODO: change with live site
             .then(res => {
                 if (res.data.status == 'ok') {
                     Swal.fire({
@@ -136,19 +136,20 @@ const DailyCost = () => {
                                                                                         updatedMealNumbers[index] = parseFloat(e.target.value);
                                                                                         setMealNumbers(updatedMealNumbers);
                                                                                     }}>
-                                                                                    <option key={index + 1} value={0}>0</option>
-                                                                                    <option>1</option>
-                                                                                    <option>2</option>
-                                                                                    <option>3</option>
-                                                                                    <option>4</option>
-                                                                                    <option>5</option>
-                                                                                    <option>6</option>
-                                                                                    <option>0.5</option>
-                                                                                    <option>1.5</option>
-                                                                                    <option>2.5</option>
-                                                                                    <option>3.5</option>
-                                                                                    <option>4.5</option>
-                                                                                    <option>5.5</option>
+                                                                                    <option key={index + 1} selected>Choose one</option>
+                                                                                    <option  value={0}>0</option>
+                                                                                    <option value={1}>1</option>
+                                                                                    <option value={2}>2</option>
+                                                                                    <option value={3}>3</option>
+                                                                                    <option value={4}>4</option>
+                                                                                    <option value={5}>5</option>
+                                                                                    <option value={6}>6</option>
+                                                                                    <option value={0.5}>0.5</option>
+                                                                                    <option value={1.5}>1.5</option>
+                                                                                    <option value={2.5}>2.5</option>
+                                                                                    <option value={3.5}>3.5</option>
+                                                                                    <option value={4.5}>4.5</option>
+                                                                                    <option value={5.5}>5.5</option>
                                                                                 </select>
 
                                                                             </div>

@@ -4,11 +4,12 @@ import Home from "../Pages/Home/Home";
 import Login from "../shared/Login/Login";
 import Dashboard from "../layout/Dashboard/Dashboard";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import AdminPrivateRoutes from "../PrivateRoutes/AdminPrivateRoutes"
+import ManagerPrivateRoutes from "../PrivateRoutes/ManagerPrivateRoutes";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import ManagerRequest from "../Pages/Dashboard/ManagerRequest/ManagerRequest";
 import Profile from "../Pages/Dashboard/Profile/Profile";
 import AddMember from "../Pages/Dashboard/AddMember/AddMember";
-import ManagerPrivateRoutes from "../PrivateRoutes/ManagerPrivateRoutes";
 import ViewMember from "../Pages/Dashboard/ViewMember/ViewMember";
 import AddBalance from "../Pages/Dashboard/AddBalance/AddBalance";
 import ViewBalance from "../Pages/Dashboard/ViewBalance/ViewBalance";
@@ -17,6 +18,8 @@ import DailyBazar from "../Pages/Dashboard/DailyBazar/DailyBazar";
 import ViewMealStatus from "../Pages/Dashboard/ViewMealStatus/ViewMealStatus";
 import MealStatus from "../Pages/Dashboard/MealStatus/MealStatus";
 import FormatStorage from "../Pages/Dashboard/FormatStorage/FormatStorage";
+import ManagerRequestList from "../Pages/Dashboard/Admin/ManagerRequest/ManagerRequest";
+import Notice from "../Pages/Notice/Notice";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />
+      },
+      {
+        path: "/notice",
+        element: <Notice />
       },
       {
         path: '/dashboard',
@@ -42,6 +49,10 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <PrivateRoutes><Profile /></PrivateRoutes>
+          },
+          {
+            path: 'req-manager-list',
+            element: <PrivateRoutes><AdminPrivateRoutes><ManagerRequestList/></AdminPrivateRoutes></PrivateRoutes>
           },
           {
             path: 'add-members',

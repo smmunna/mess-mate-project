@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import axios from 'axios';
 import Spinner from '../../../components/Spinner/Spinner';
+import PageTitle from '../../../components/PageTitle/PageTitle';
 
 const Profile = () => {
     const { user } = useContext(AuthContext)
     const [getUser, setUser] = useState([]);
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user-req-details/${user.email}`, {
+        axios.get(`http://localhost:8000/api/user/${user.email}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -31,6 +32,7 @@ const Profile = () => {
     return (
         <div>
 
+            <PageTitle title={`Profile | Mess Mate`} />
 
             <div className="mt-8 lg:mt-2 md:grid grid-cols-4 grid-rows-2 bg-white gap-2 p-4 rounded-xl">
                 <div className="md:col-span-1 h-48 shadow-xl">
@@ -72,21 +74,19 @@ const Profile = () => {
                         <input
                             className="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
                             type="text"
-                            value={getUser.status == 'pending' ? 'Pending' : getUser.status == 'user' ? 'User' : 'Manager'}
+                            value={getUser.roles == 'pending' ? 'Pending' : getUser.roles == 'user' ? 'User' : getUser.roles == 'admin' ? 'Admin' : 'Manager'}
                             readOnly
                         />
                     </div>
                 </div>
-                <div className="md:col-span-3 h-48 shadow-xl p-4 space-y-2 hidden md:block">
-                    <h3 className="font-bold uppercase">Instructions:</h3>
+                {/* <div className="md:col-span-3 h-48 shadow-xl p-4 space-y-2 hidden md:block">
+                    <h3 className="font-bold uppercase">Have any query ?</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                        eget laoreet diam, id luctus lectus. Ut consectetur nisl ipsum, et
-                        faucibus sem finibus vitae. Maecenas aliquam dolor at dignissim
-                        commodo. Etiam a aliquam tellus, et suscipit dolor. Proin auctor
-                        nisi velit, quis aliquet sapien viverra a.
+                        Contact with us: <a className='link-primary underline' href={`mailto:info@techzaint.com`}>info@techzaint.com</a>
                     </p>
-                </div>
+                    <p>1. You can give the feedback for improvement.</p>
+                    <p>2. Software is totally free for you.</p>
+                </div> */}
             </div>
 
 

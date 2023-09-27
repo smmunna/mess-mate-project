@@ -45,4 +45,31 @@ class RequestController extends Controller
         }
     }
 
+
+    /**
+     * This section only for Admin Handling
+     * Request pending,accepting and others
+     */
+
+    //  Getting all the request;
+    public function getAllReq()
+    {
+        $managerlist = Sendrequest::orderBy('status', 'desc')->get();
+        return $managerlist;
+
+    }
+
+    // update send request status;
+    public function reqStatus(Request $req){
+        $id = $req->input('id');
+        $status = $req->input('status');
+
+        $reqmember = Sendrequest::where('id',$id)->first();
+        $reqmember->status = $status;
+        $reqmember->save();
+        return ['status' => 'ok'];
+
+    }
+
+
 }

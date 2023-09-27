@@ -194,7 +194,7 @@ const ViewMealStatus = () => {
                     <div className='mt-2'>
                         <form onSubmit={handleUpdateMealNumber}>
                             <div className="mb-2">
-                                <input type="number" name='mealNumber' placeholder="Enter mealNumber" className="input input-bordered input-accent w-full" required />
+                                <input type="text" name='mealNumber' placeholder="Enter mealNumber" className="input input-bordered input-accent w-full" required />
                             </div>
                             <div className="mb-2">
                                 <button type="submit" className='btn btn-neutral'>Update</button>

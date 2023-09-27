@@ -1,9 +1,9 @@
+import PageTitle from "../../../components/PageTitle/PageTitle";
 
 const DashboardHome = () => {
     return (
         <div>
-
-        
+            <PageTitle title={`Dashboard Home | Mess Mate`}/>
                 <div>
                     <h3 className="text-center text-2xl font-bold py-4">How to use this software ?</h3>
                 </div>

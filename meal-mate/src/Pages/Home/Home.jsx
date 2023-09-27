@@ -1,8 +1,10 @@
+import PageTitle from '../../components/PageTitle/PageTitle';
 
 const Home = () => {
     return (
         <div>
 
+            <PageTitle title={` Home | Mess Mate`} />
             <section className="relative bg-blueGray-50">
                 <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
                     <div className="absolute top-0 w-full h-full bg-center bg-cover" style={{

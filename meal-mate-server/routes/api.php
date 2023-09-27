@@ -50,6 +50,10 @@ Route::post('/delete-data', [DeleteController::class, 'deleteAlldata']);
 
 
 Route::get('/user/{email}', [UserController::class, 'getUserByEmail']);
+
+//Admin activity;
+Route::put('/req-status-update',[RequestController::class,'reqStatus']);
+
 //All secure URL's
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // User information secured;
@@ -60,10 +64,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/show-balance/{email?}', [BalanceController::class, 'showBalance']);
     Route::get('/view-meal-status', [DailymealController::class, 'getMealStatus']);
     Route::get('/show-daily-bazar', [DailybazarController::class, 'showDailyBazar']);
-
+    
     Route::get('/collected-amount', [CurrentStatusController::class, 'getBalances']);
     Route::get('/cost-bazar', [CurrentStatusController::class, 'getBazarCost']);
     Route::get('/cost-meal', [CurrentStatusController::class, 'getTotalMeal']);
     Route::get('/total-meal-for-member', [CurrentStatusController::class, 'getTotalMealForMember']);
-
+    
+    Route::get('/managerlist',[RequestController::class,'getAllReq']);
 });

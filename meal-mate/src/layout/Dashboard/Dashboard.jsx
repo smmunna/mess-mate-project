@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, Outlet, ScrollRestoration } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
+import openIcon from "../../assets/icon/open.png";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -46,12 +47,14 @@ const Dashboard = () => {
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Page content here */}
-                    <div className="py-20 md:py-4 px-4">
+                    <div className="py-20 md:py-4 px-2">
                         <Outlet />
                         <ScrollRestoration />
                     </div>
 
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden w-36 absolute top-2 right-2">Open drawer</label>
+                    <label htmlFor="my-drawer-2" className="btn btn-success drawer-button lg:hidden w-36 absolute top-2 right-2">
+                        Open⏭
+                    </label>
 
                 </div>
                 <div className="drawer-side">
@@ -99,7 +102,6 @@ const Dashboard = () => {
 
 
                                     <li className="my-3 py-2 bg-slate-700"><Link className="link-style1">Contact with Admin</Link></li>
-                                    {/* <li><a>Sidebar Item 2</a></li> */}
                                 </div>
                             </>
                         }
@@ -110,11 +112,9 @@ const Dashboard = () => {
                                 <div>
                                     <h3 className="text-lg font-bold text-red-600 py-4">Welcome to <span>User Pannel</span></h3>
                                     <hr className="border-4 border-b-amber-600" />
-                                    <li className="my-3 py-2 bg-slate-400"><Link>Check Meal Details</Link></li>
-                                    <li className="my-3 py-2 bg-slate-400"><Link to={`/dashboard/profile`}>User Request</Link></li>
-                                    <li className="my-3 py-2 bg-slate-400"><Link to={`/dashboard/request-manager`}>Request for Manager</Link></li>
-                                    <li className="my-3 py-2 bg-slate-400"><Link>Messages</Link></li>
-                                    {/* <li><a>Sidebar Item 2</a></li> */}
+                                    <li className="my-3 py-2 bg-slate-800"><Link className="link-style-brown" to={`/dashboard/profile`}>Profile</Link></li>
+                                    <li className="my-3 py-2 bg-slate-700"><Link className="link-style" to={`/dashboard/req-manager-list`}>Request for Manager List</Link></li>
+                                    <li className="my-3 py-2 bg-slate-800"><Link className="link-style-brown">Messages</Link></li>
                                 </div>
                             </>
                         }

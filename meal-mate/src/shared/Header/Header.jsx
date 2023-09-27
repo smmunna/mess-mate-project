@@ -1,5 +1,5 @@
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
@@ -8,6 +8,8 @@ const Header = () => {
     const location = useLocation()
     // Getting the exact path;
     let from = location.state?.from?.pathname || "/";
+
+
 
     // Handle Logout;
     const handleLogout = () => {
@@ -62,7 +64,11 @@ const Header = () => {
                             <>
                                 <div className="flex justify-center items-center gap-3 mr-5 md:mr-4 lg:mr-0">
                                     <div className="w-12 rounded-full">
-                                        <img src={user.photoURL} />
+                                        {user.photoURL ? (
+                                            <img src={user.photoURL} alt="User Photo" />
+                                        ) : (
+                                            <div className="px-6">Loading...</div>
+                                        )}
                                     </div>
                                     <div className="hidden md:block" onClick={handleLogout}>
                                         <Link className="btn btn-warning">Logout</Link>
