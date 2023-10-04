@@ -13,12 +13,13 @@ const ManagerRequest = () => {
 
     // user request details;
     const userReq = () => {
-        axios.get(`http://localhost:8000/api/user-req-status/${user?.email}`, { //TODO:Change with live server;
+        axios.get(`http://localhost:8000/api/user-req-status/${user.email}`, { //TODO:Change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
         }) //TODO: change with live site;
             .then(res => {
+                // console.log(res)
                 setReqUser(res.data)
                 // console.log(res.data)
             })
@@ -77,7 +78,7 @@ const ManagerRequest = () => {
                             <form onSubmit={handleSendRequest}>
                                 <div className="space-y-4 mt-4">
                                     <label htmlFor="Mess Name">Mess Name:</label>
-                                    <input type="text" name="role_req" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" />
+                                    <input type="text" name="role_req" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" required />
                                 </div>
                                 <button className="btn btn-neutral mt-4">Send Request</button>
                             </form>

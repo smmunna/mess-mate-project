@@ -3,8 +3,8 @@ import { AuthContext } from '../../../provider/AuthProvider';
 import Spinner from '../../../components/Spinner/Spinner';
 import axios from 'axios';
 import showIcon from "../../../assets/icon/date.png"
-import Swal from 'sweetalert2';
 import PageTitle from "../../../components/PageTitle/PageTitle";
+import { ToastContainer, toast } from 'react-toastify';
 
 const DailyCost = () => {
     const [getmember, setGetmember] = useState([])
@@ -48,7 +48,7 @@ const DailyCost = () => {
 
         const mealInfo = {
             data: memberMealNumbers,
-            date:startdate
+            date: startdate
         }
 
         // console.log(mealInfo)
@@ -58,18 +58,16 @@ const DailyCost = () => {
             .then(res => {
                 // console.log(res.data)
 
-                 if (res.data.status == 'exist') {
-                    alert(`On this date: ${startdate}, data hasbeen already exist`)
+                if (res.data.status == 'exist') {
+                    toast.error(`On this date: ${startdate}, data hasbeen already exist`, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                 }
 
                 if (res.data.status == 'ok') {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Your work has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('Todays meal saved successfully..', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                     form.reset();
                 }
 
@@ -84,7 +82,7 @@ const DailyCost = () => {
 
     return (
         <div>
-        <PageTitle title={`Add Daily Meal | Mess Mate`}/>
+            <PageTitle title={`Add Daily Meal | Mess Mate`} />
             <h3 className="text-center text-2xl my-3">Your Daily Meal</h3>
             <hr />
 
@@ -146,7 +144,7 @@ const DailyCost = () => {
                                                                                         setMealNumbers(updatedMealNumbers);
                                                                                     }}>
                                                                                     <option key={index + 1} value={0}>Choose one</option>
-                                                                                    <option  value={0}>0</option>
+                                                                                    <option value={0}>0</option>
                                                                                     <option value={1}>1</option>
                                                                                     <option value={2}>2</option>
                                                                                     <option value={3}>3</option>
@@ -193,6 +191,7 @@ const DailyCost = () => {
                 </div>
 
             </form>
+            <ToastContainer />
         </div>
     );
 }

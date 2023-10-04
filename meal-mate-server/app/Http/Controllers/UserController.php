@@ -61,4 +61,9 @@ class UserController extends Controller
     }
 
 
+    // Default error Route;
+    public function errorRoute(){
+        return  view('error');
+    }
+
 }

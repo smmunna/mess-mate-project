@@ -42,7 +42,7 @@ const Header = () => {
     return (
         <div>
 
-            <div className="px-0 lg:px-24 navbar bg-slate-700 text-slate-200">
+            <div className="px-5 lg:px-24 navbar bg-slate-700 text-slate-200">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">

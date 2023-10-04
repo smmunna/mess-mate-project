@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
+use App\Models\Dailymeal;
 use App\Models\Member;
 use Illuminate\Http\Request;
 
@@ -45,8 +47,11 @@ class MemberController extends Controller
     }
 
     // Delete Member from Member Table;
-    public function deleteMember($id){
-        $member = Member::Where('id',$id)->delete();
-        return ['status'=>'ok'];
+    public function deleteMember($id)
+    {
+        Member::Where('id', $id)->delete();
+        Balance::Where('member_id', $id)->delete();
+        Dailymeal::Where('member_id', $id)->delete();
+        return ['status' => 'ok'];
     }
 }

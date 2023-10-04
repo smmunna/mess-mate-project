@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
-import Swal from 'sweetalert2';
 import PageTitle from "../../../components/PageTitle/PageTitle";
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddBalance = () => {
     const [getmember, setGetmember] = useState([])
@@ -16,6 +16,7 @@ const AddBalance = () => {
             }
         })
             .then(res => {
+
                 setGetmember(res.data)
 
             })
@@ -47,16 +48,17 @@ const AddBalance = () => {
         // Add data to the server Balance Controller with Balance table;
         axios.post(`http://localhost:8000/api/add-balance`, amountInfo) //TODO: change with live server;
             .then(res => {
-                if (res.data.status == 'ok') {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Amount has been added successfully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                if (res.data.status == 'exist') {
+                    toast.error('Sorry! your have already added balance !', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
                 }
-                form.reset()
+                else if (res.data.status == 'ok') {
+                    toast.success('Balance hasbeen added successfully..', {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                    form.reset()
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -65,7 +67,7 @@ const AddBalance = () => {
 
     return (
         <div>
-        <PageTitle title={`Add Balance | Mess Mate`}/>
+            <PageTitle title={`Add Balance | Mess Mate`} />
             <h3 className='text-2xl text-center mb-2 font-semibold'>Add Balance</h3>
             <hr />
             <div className='grid justify-center pt-5'>
@@ -89,7 +91,7 @@ const AddBalance = () => {
                         </div>
                     </form>
                 </div>
-
+                <ToastContainer />
             </div>
         </div>
     );

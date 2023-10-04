@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import PageTitle from "../../../components/PageTitle/PageTitle";
+import Swal from 'sweetalert2';
 
 const AddMember = () => {
     const { user } = useContext(AuthContext);
@@ -36,10 +37,10 @@ const AddMember = () => {
             alert('Name must be atleast 3 character long')
             return
         }
-        else if (phone.length < 10) {
-            alert('Phone Number must be atleast 10 digit')
-            return
-        }
+        // else if (phone.length < 10) {
+        //     alert('Phone Number must be atleast 10 digit')
+        //     return
+        // }
 
         const addInfo = {
             name,
@@ -55,7 +56,13 @@ const AddMember = () => {
         axios.post(`http://localhost:8000/api/add-member`, addInfo)  //TODO: change with live server
             .then(res => {
                 if (res.data.status == 'ok') {
-                    alert('Member added successfully')
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Member added successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     form.reset();
                 }
             })
@@ -71,7 +78,7 @@ const AddMember = () => {
 
     return (
         <div>
-        <PageTitle title={`Add Member | Mess Mate`}/>
+            <PageTitle title={`Add Member | Mess Mate`} />
             <div className='flex justify-center'>
                 <div>
                     <div>
@@ -92,13 +99,13 @@ const AddMember = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="Enter your email" className="input input-bordered" required />
+                                <input type="email" name='email' placeholder="Enter your email, optional" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Phone</span>
                                 </label>
-                                <input type="number" name='phone' placeholder="+88016XXXXXXXX" className="input input-bordered" required />
+                                <input type="number" name='phone' placeholder="+88016XXXXXXXX, optional" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <button className='btn btn-neutral mt-4' type="submit">Save</button>
