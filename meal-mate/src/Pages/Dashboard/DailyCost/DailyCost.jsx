@@ -13,7 +13,7 @@ const DailyCost = () => {
     const [isLoaded, setLoaded] = useState(false)
     const { user } = useContext(AuthContext)
     const getUser = () => {
-        axios.get(`http://localhost:8000/api/member/${user?.email}`, {  //TODO: change with liver server;
+        axios.get(`https://messmateserver.techzaint.com/api/member/${user?.email}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -54,7 +54,7 @@ const DailyCost = () => {
         // console.log(mealInfo)
 
         // send to the server;
-        axios.post(`http://localhost:8000/api/save-dailymeal`, mealInfo) //TODO: change with live site
+        axios.post(`https://messmateserver.techzaint.com/api/save-dailymeal`, mealInfo) //TODO: change with live site
             .then(res => {
                 // console.log(res.data)
 

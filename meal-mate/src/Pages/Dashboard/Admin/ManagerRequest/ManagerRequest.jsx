@@ -12,7 +12,7 @@ const ManagerRequest = () => {
     const [getreq, setGetreq] = useState('');
 
     const getUser = () => {
-        axios.get(`http://localhost:8000/api/managerlist`, { //TODO:change with live site;
+        axios.get(`https://messmateserver.techzaint.com/api/managerlist`, { //TODO:change with live site;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -37,7 +37,7 @@ const ManagerRequest = () => {
             id,
             status: getreq
         }
-        axios.put(`http://localhost:8000/api/req-status-update`, updateInfo) //TODO: change with live server;
+        axios.put(`https://messmateserver.techzaint.com/api/req-status-update`, updateInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'ok') {
                     form.reset()

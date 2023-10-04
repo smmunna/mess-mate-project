@@ -12,7 +12,7 @@ const ManagerPrivateRoutes = ({ children }) => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user-req-details/${user?.email}`, {
+        axios.get(`https://messmateserver.techzaint.com/api/user-req-details/${user?.email}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }

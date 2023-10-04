@@ -21,7 +21,7 @@ const FormatStorage = () => {
                 const emailInfo = {
                     manager_email: user.email
                 }
-                axios.post(`http://localhost:8000/api/delete-data`, emailInfo) //TODO: change with live server;
+                axios.post(`https://messmateserver.techzaint.com/api/delete-data`, emailInfo) //TODO: change with live server;
                     .then(res => {
                         if (res.data.status == 'ok') {
                             Swal.fire(

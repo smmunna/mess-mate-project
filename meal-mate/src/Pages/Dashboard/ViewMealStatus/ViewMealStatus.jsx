@@ -22,7 +22,7 @@ const ViewMealStatus = () => {
         const email = user?.email;
 
         // Construct the URL with query parameters
-        const url = `http://localhost:8000/api/view-meal-status?email=${email}&date=${date}`; //TODO: change with live server;
+        const url = `https://messmateserver.techzaint.com/api/view-meal-status?email=${email}&date=${date}`; //TODO: change with live server;
         axios.get(url, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
@@ -47,7 +47,7 @@ const ViewMealStatus = () => {
         const mealInfo = {
             mealNumber
         }
-        axios.put(`http://localhost:8000/api/update-meal-number/${id}`, mealInfo) //TODO: change with live server;
+        axios.put(`https://messmateserver.techzaint.com/api/update-meal-number/${id}`, mealInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'ok') {
                     form.reset()

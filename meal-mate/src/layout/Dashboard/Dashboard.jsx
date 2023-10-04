@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [reqUser, setReqUser] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${user?.email}`, {
+        axios.get(`https://messmateserver.techzaint.com/api/user/${user?.email}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -25,7 +25,7 @@ const Dashboard = () => {
     }, [])
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user-req-details/${user?.email}`, { //TODO: change with live server;
+        axios.get(`https://messmateserver.techzaint.com/api/user-req-details/${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }

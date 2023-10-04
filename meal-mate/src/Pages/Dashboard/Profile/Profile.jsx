@@ -10,7 +10,7 @@ const Profile = () => {
     const [getUser, setUser] = useState([]);
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/${user?.email}`, { //TODO: change with live site;
+        axios.get(`https://messmateserver.techzaint.com/api/user/${user?.email}`, { //TODO: change with live site;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }

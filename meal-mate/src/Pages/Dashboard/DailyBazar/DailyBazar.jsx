@@ -17,7 +17,7 @@ const DailyBazar = () => {
 
      //Show the daily Bazar cost here;
      const getBazarCost = () => {
-        axios.get(`http://localhost:8000/api/show-daily-bazar?manager_email=${user?.email}`, { //TODO: change with live server;
+        axios.get(`https://messmateserver.techzaint.com/api/show-daily-bazar?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -52,7 +52,7 @@ const DailyBazar = () => {
             manager_email: user.email
         }
         // console.log(bazarInfo)
-        axios.post(`http://localhost:8000/api/save-dailybazar`, bazarInfo)  //TODO: change with live server;
+        axios.post(`https://messmateserver.techzaint.com/api/save-dailybazar`, bazarInfo)  //TODO: change with live server;
             .then(res => {
                 if(res.data.status == 'exist'){
                     alert(`On this date: ${startdate}, data already exist..!`)
@@ -88,7 +88,7 @@ const DailyBazar = () => {
             amount
         }
 
-        axios.put(`http://localhost:8000/api/update-dailybazar?id=${id}`, amountInfo) //TODO: change with live server;
+        axios.put(`https://messmateserver.techzaint.com/api/update-dailybazar?id=${id}`, amountInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'ok') {
                     form.reset()

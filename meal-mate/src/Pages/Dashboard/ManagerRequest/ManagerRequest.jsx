@@ -13,7 +13,7 @@ const ManagerRequest = () => {
 
     // user request details;
     const userReq = () => {
-        axios.get(`http://localhost:8000/api/user-req-status/${user.email}`, { //TODO:Change with live server;
+        axios.get(`https://messmateserver.techzaint.com/api/user-req-status/${user.email}`, { //TODO:Change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -44,7 +44,7 @@ const ManagerRequest = () => {
         }
 
         // Send request to the server;
-        axios.post(`http://localhost:8000/api/request-manager`, reqInfo) //TODO: change with live server;
+        axios.post(`https://messmateserver.techzaint.com/api/request-manager`, reqInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'exist') {
                     toast.error('Sorry! your have already sent the request !', {

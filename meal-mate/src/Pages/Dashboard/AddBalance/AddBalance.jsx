@@ -10,7 +10,7 @@ const AddBalance = () => {
     const [changeMember, setChangeMember] = useState('');
 
     const getUser = () => {
-        axios.get(`http://localhost:8000/api/member/${user.email}`, {  //TODO: change with liver server;
+        axios.get(`https://messmateserver.techzaint.com/api/member/${user.email}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -46,7 +46,7 @@ const AddBalance = () => {
         // console.log(amountInfo)
 
         // Add data to the server Balance Controller with Balance table;
-        axios.post(`http://localhost:8000/api/add-balance`, amountInfo) //TODO: change with live server;
+        axios.post(`https://messmateserver.techzaint.com/api/add-balance`, amountInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'exist') {
                     toast.error('Sorry! your have already added balance !', {

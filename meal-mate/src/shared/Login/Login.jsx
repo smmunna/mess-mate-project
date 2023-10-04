@@ -26,7 +26,7 @@ const Login = () => {
                 }
 
                 // Login procedure;
-                axios.post(`http://localhost:8000/api/login`, users)  //TODO:: change with live site;
+                axios.post(`https://messmateserver.techzaint.com/api/login`, users)  //TODO:: change with live site;
                     .then(res => {
                         if (res.data.status == 'exist') {
                             // toast('Login Successful')

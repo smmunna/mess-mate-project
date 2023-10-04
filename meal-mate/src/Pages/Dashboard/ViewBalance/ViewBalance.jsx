@@ -14,7 +14,7 @@ const ViewBalance = () => {
     const { user } = useContext(AuthContext)
 
     const joinUser = () => {
-        axios.get(`http://localhost:8000/api/show-balance/${user?.email}`, {  //TODO: change with liver server;
+        axios.get(`https://messmateserver.techzaint.com/api/show-balance/${user?.email}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -42,7 +42,7 @@ const ViewBalance = () => {
         const amountInfo = {
             amount
         }
-        axios.put(`http://localhost:8000/api/update-balance/${id}`, amountInfo) //TODO: change with live server;
+        axios.put(`https://messmateserver.techzaint.com/api/update-balance/${id}`, amountInfo) //TODO: change with live server;
             .then(res => {
                 if (res.data.status == 'ok') {
                     form.reset()

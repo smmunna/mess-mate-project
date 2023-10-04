@@ -29,7 +29,7 @@ const MealStatus = () => {
 
     // Get collected Balance;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/collected-amount?manager_email=${user?.email}`, { //TODO: change with live server
+        axios.get(`https://messmateserver.techzaint.com/api/collected-amount?manager_email=${user?.email}`, { //TODO: change with live server
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -52,7 +52,7 @@ const MealStatus = () => {
 
     // Get total bazar cost;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/cost-bazar?manager_email=${user?.email}`, { //TODO: change with live server;
+        axios.get(`https://messmateserver.techzaint.com/api/cost-bazar?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -77,7 +77,7 @@ const MealStatus = () => {
 
     // Get total mealCounted Number cost;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/total-meal-for-member?manager_email=${user?.email}`, { //TODO: change with live server;
+        axios.get(`https://messmateserver.techzaint.com/api/total-meal-for-member?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -98,7 +98,7 @@ const MealStatus = () => {
 
     // Get total meal;
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/cost-meal?manager_email=${user?.email}`, { //TODO: change with live server;
+        axios.get(`https://messmateserver.techzaint.com/api/cost-meal?manager_email=${user?.email}`, { //TODO: change with live server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }

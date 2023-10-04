@@ -15,7 +15,7 @@ const MemberTable = () => {
     const { user } = useContext(AuthContext)
 
     const getUser = () => {
-        axios.get(`http://localhost:8000/api/member/${user.email}`, {  //TODO: change with liver server;
+        axios.get(`https://messmateserver.techzaint.com/api/member/${user.email}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -37,7 +37,7 @@ const MemberTable = () => {
 
     // View Details of user;
     const handleViewDetails = (id) => {
-        axios.get(`http://localhost:8000/api/member-id/${id}`, {  //TODO: change with liver server;
+        axios.get(`https://messmateserver.techzaint.com/api/member-id/${id}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -56,7 +56,7 @@ const MemberTable = () => {
 
     // View Details of user;
     const handleUpdateViewDetails = (id) => {
-        axios.get(`http://localhost:8000/api/member-id/${id}`, {  //TODO: change with liver server;
+        axios.get(`https://messmateserver.techzaint.com/api/member-id/${id}`, {  //TODO: change with liver server;
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -90,7 +90,7 @@ const MemberTable = () => {
         }
 
         // update-> sent to the server;
-        axios.put(`http://localhost:8000/api/update-member/${id}`, updateInfo)  //TODO:change with live site;
+        axios.put(`https://messmateserver.techzaint.com/api/update-member/${id}`, updateInfo)  //TODO:change with live site;
             .then(res => {
                 if (res.data.status == 'ok') {
                     getUser();
@@ -119,7 +119,7 @@ const MemberTable = () => {
             if (result.isConfirmed) {
 
                 // update-> sent to the server;
-                axios.delete(`http://localhost:8000/api/delete-member/${id}`)  //TODO: change with live site;
+                axios.delete(`https://messmateserver.techzaint.com/api/delete-member/${id}`)  //TODO: change with live site;
                     .then(res => {
                         if (res.data.status == 'ok') {
                             getUser();

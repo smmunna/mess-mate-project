@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
             // For sanctum Implementation
             if (currentUser) {
                 const loggedUser = { email: currentUser.email }
-                fetch(`http://localhost:8000/api/verify`, { //TODO: change with live server;
+                fetch(`https://messmateserver.techzaint.com/api/verify`, { //TODO: change with live server;
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'

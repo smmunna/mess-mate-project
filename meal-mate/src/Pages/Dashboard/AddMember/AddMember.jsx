@@ -10,7 +10,7 @@ const AddMember = () => {
     const [reqUser, setReqUser] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user-req-details/${user.email}`, { //TODO: change with live server
+        axios.get(`https://messmateserver.techzaint.com/api/user-req-details/${user.email}`, { //TODO: change with live server
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access-token')}`
             }
@@ -53,7 +53,7 @@ const AddMember = () => {
         // console.log(addInfo)
         // Send data to server;
 
-        axios.post(`http://localhost:8000/api/add-member`, addInfo)  //TODO: change with live server
+        axios.post(`https://messmateserver.techzaint.com/api/add-member`, addInfo)  //TODO: change with live server
             .then(res => {
                 if (res.data.status == 'ok') {
                     Swal.fire({
